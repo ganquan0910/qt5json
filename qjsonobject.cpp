@@ -183,6 +183,16 @@ QJsonObject QJsonObject::fromVariantMap(const QVariantMap &map)
     return object;
 }
 
+QJsonObject QJsonObject::fromVariantHash(const QVariantHash &map)
+{
+    // ### this is implemented the trivial way, not the most efficient way
+
+    QJsonObject object;
+    for (QVariantHash::const_iterator it = map.constBegin(); it != map.constEnd(); ++it)
+        object.insert(it.key(), QJsonValue::fromVariant(it.value()));
+    return object;
+}
+
 /*!
     Converts this object to a QVariantMap.
 

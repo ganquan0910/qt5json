@@ -54,6 +54,9 @@ class QDebug;
 template <class Key, class T> class QMap;
 typedef QMap<QString, QVariant> QVariantMap;
 
+template <class Key, class T> class QHash;
+typedef QHash<QString, QVariant> QVariantHash;
+
 class QJSON_EXPORT QJsonObject
 {
 public:
@@ -64,6 +67,7 @@ public:
     QJsonObject &operator =(const QJsonObject &other);
 
     static QJsonObject fromVariantMap(const QVariantMap &map);
+    static QJsonObject fromVariantHash(const QVariantHash &map);
     QVariantMap toVariantMap() const;
 
     QStringList keys() const;
