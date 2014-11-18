@@ -18,7 +18,7 @@ set(sources
 )
 
 include(GenerateExportHeader)
-ADD_COMPILER_EXPORT_FLAGS()
+add_compiler_export_flags()
 
 add_library(${PROJECT_NAME} ${sources})
 
@@ -30,6 +30,14 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 set(CMAKE_AUTOMOC TRUE)
+
+set(BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "The directory where binaries will install")
+set(LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH "The directory where lib will install")
+
+install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-targets
+  RUNTIME DESTINATION ${BIN_INSTALL_DIR}
+  LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+  ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
 
 target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES})
 
